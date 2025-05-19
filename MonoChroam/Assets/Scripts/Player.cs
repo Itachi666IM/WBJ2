@@ -9,8 +9,15 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     public float speed;
+    public float jumpSpeed;
 
     bool isFacingRight = true;
+
+    bool canJump;
+
+    public Transform groundCheck;
+    bool isGrounded;
+    public LayerMask groundLayer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +27,14 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveDirection = value.Get<Vector2>();
+    }
+
+    void OnJump(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            canJump = true;
+        }
     }
 
     void Walk()
@@ -40,6 +55,12 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Walk();
+        if(canJump && isGrounded)
+        {
+            anim.SetTrigger("jump");
+            rb.velocity = Vector2.up * jumpSpeed;
+            canJump = false;
+        }
     }
 
     void FlipSprite()
@@ -59,5 +80,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         FlipSprite();
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f,groundLayer);
     }
 }
