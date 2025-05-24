@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     bool isGrounded;
     public LayerMask groundLayer;
+    public LayerMask flameLayer;
+    public bool isCarryingItem = false;
+    [HideInInspector] public string itemName;
+
+    bool isNearFlame;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -82,5 +87,17 @@ public class Player : MonoBehaviour
         FlipSprite();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f,groundLayer);
+        isNearFlame = Physics2D.OverlapCircle(transform.position, 1f, flameLayer);
+
+        if(isNearFlame && isCarryingItem)
+        {
+            if(itemName == "Bucket")
+            {
+                Flame flame = FindObjectOfType<Flame>();
+                flame.isExtinguished = true;
+                isCarryingItem = false;
+                itemName = "";
+            }
+        }
     }
 }
