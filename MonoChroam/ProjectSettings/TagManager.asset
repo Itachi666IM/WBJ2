@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Flame
+  - Bucket
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Particles
   - Player
   - Ground
-  - 
-  - 
+  - Interactable
+  - Flame
   - 
   - 
   - 
@@ -43,6 +45,9 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 3895911955
+    locked: 0
+  - name: Interactable
+    uniqueID: 4064346357
     locked: 0
   - name: Player
     uniqueID: 3114901793
