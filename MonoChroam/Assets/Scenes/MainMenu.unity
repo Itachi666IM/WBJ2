@@ -5387,7 +5387,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move around the world looking for colors, solve puzzles to unlock all colors.
+  m_text: 'Use W,A,S,D to move and space to jump
+
+    Solve puzzles to win!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fec3a0bd8e303a4f8696867946403de, type: 2}
   m_sharedMaterial: {fileID: 4941890444168251826, guid: 6fec3a0bd8e303a4f8696867946403de, type: 2}
