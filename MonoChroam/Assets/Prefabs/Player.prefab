@@ -150,7 +150,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 14
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 250
-  jumpSpeed: 60
+  jumpSpeed: 120
   groundCheck: {fileID: 5166403863687389289}
   groundLayer:
     serializedVersion: 2
@@ -218,6 +218,9 @@ MonoBehaviour:
     m_Bits: 2048
   isCarryingItem: 0
   itemName: 
+  hasReachedChainTop: 0
+  canOpenDoor: 0
+  canTP: 0
 --- !u!95 &357641938584607389
 Animator:
   serializedVersion: 5
