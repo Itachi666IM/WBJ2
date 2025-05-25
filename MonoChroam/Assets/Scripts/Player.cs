@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     bool isNearChain;
     float defaultGravityScale;
     public bool hasReachedChainTop;
+    [HideInInspector] public bool canOpenDoor;
+    [HideInInspector] public bool canTP;
+    Transform tpPos;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -126,6 +129,16 @@ public class Player : MonoBehaviour
                 itemName = "";
             }
         }
+
+        if(isCarryingItem && itemName=="Key")
+        {
+            canOpenDoor = true;
+        }
+
+        if(canTP && Input.GetKeyDown(KeyCode.E))
+        {
+            transform.position = tpPos.position;
+        }
     }
 
     public void ResetGravity()
@@ -133,9 +146,9 @@ public class Player : MonoBehaviour
         rb.gravityScale = defaultGravityScale;
     }
 
-    public void JumpUpTheChain()
+    public void TPToNewPos(Transform targetPos)
     {
-        hasReachedChainTop = true;
+        tpPos = targetPos;
     }
 
 }
