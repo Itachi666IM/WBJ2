@@ -7,10 +7,10 @@ public class Button : MonoBehaviour
     private Sprite buttonDefaultSprite;
     public Sprite buttonPushedSprite;
     public LayerMask playerLayer;
-
+    public GameObject wall;
     private SpriteRenderer mySpriteRenderer;
     private bool canPush;
-
+    bool once = true;
     private void Start()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,6 +35,11 @@ public class Button : MonoBehaviour
                 if (mySpriteRenderer.sprite == buttonDefaultSprite)
                 {
                     mySpriteRenderer.sprite = buttonPushedSprite;
+                    if(once)
+                    {
+                        once = false;
+                        Destroy(wall);
+                    }
                 }
                 else if (mySpriteRenderer.sprite == buttonPushedSprite)
                 {
