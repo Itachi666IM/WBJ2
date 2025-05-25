@@ -68,17 +68,24 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Walk();
-        if((canJump && isGrounded)||(hasReachedChainTop))
+        if(canJump && isGrounded)
         {
             anim.SetTrigger("jump");
             rb.velocity = Vector2.up * jumpSpeed;
             canJump = false;
+        }
+
+        if(hasReachedChainTop)
+        {
+            anim.SetBool("isClimbing", false);
+            anim.SetTrigger("jump");
+            rb.velocity = Vector2.up * jumpSpeed;
             hasReachedChainTop = false;
         }
 
-
         if(isNearChain)
         {
+            
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
             if (moveDirection.y > 0)
@@ -88,6 +95,15 @@ public class Player : MonoBehaviour
             else if (moveDirection.y < 0)
             {
                 rb.velocity = Vector2.down;
+            }
+
+            if(Mathf.Abs(moveDirection.y) > 0)
+            {
+                anim.SetBool("isClimbing", true);
+            }
+            else
+            {
+                anim.SetBool("isClimbing", false);
             }
                 
         }
