@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Flame : MonoBehaviour
 {
     [HideInInspector]public bool isExtinguished = false;
+    public AudioSource sfx;
+    public AudioClip flameExtinguishSound;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
@@ -18,6 +20,7 @@ public class Flame : MonoBehaviour
     {
         if(isExtinguished)
         {
+            sfx.PlayOneShot(flameExtinguishSound);
             Destroy(gameObject);
         }
     }

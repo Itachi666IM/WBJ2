@@ -11,6 +11,9 @@ public class Button : MonoBehaviour
     private SpriteRenderer mySpriteRenderer;
     private bool canPush;
     bool once = true;
+
+    public AudioSource sfx;
+    public AudioClip pushSound;
     private void Start()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,6 +35,7 @@ public class Button : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
+                sfx.PlayOneShot(pushSound);
                 if (mySpriteRenderer.sprite == buttonDefaultSprite)
                 {
                     mySpriteRenderer.sprite = buttonPushedSprite;

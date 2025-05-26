@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isExtinguished: 0
+  sfx: {fileID: 0}
+  flameExtinguishSound: {fileID: 8300000, guid: 281a8df9b82f23f4ea314acde780b29b, type: 3}
 --- !u!95 &2342096729761664871
 Animator:
   serializedVersion: 5

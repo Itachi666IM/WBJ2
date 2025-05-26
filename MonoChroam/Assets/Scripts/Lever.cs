@@ -12,6 +12,8 @@ public class Lever : MonoBehaviour
     public LayerMask playerLayer;
 
     public GameObject fan;
+    public AudioSource sfx;
+    public AudioClip pushSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class Lever : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
+                sfx.PlayOneShot(pushSound);
                 if(mySpriteRenderer.sprite == leverRight)
                 {
                     mySpriteRenderer.sprite = leverLeft;
