@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -230620939
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -572235284, guid: a01546b084b68cc4eb07459d9abd7dbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,3 +101,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  wall: {fileID: 0}
+  sfx: {fileID: 0}
+  pushSound: {fileID: 8300000, guid: 9ddb21f8c4b4d8340ad7656b61533901, type: 3}

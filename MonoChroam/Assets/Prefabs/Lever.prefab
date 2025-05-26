@@ -102,3 +102,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   fan: {fileID: 0}
+  sfx: {fileID: 0}
+  pushSound: {fileID: 8300000, guid: 9ddb21f8c4b4d8340ad7656b61533901, type: 3}

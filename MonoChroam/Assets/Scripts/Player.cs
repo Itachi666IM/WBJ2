@@ -30,11 +30,19 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool canOpenDoor;
     [HideInInspector] public bool canTP;
     Transform tpPos;
+    public LayerMask portalLayer;
+    bool isNearPortal;
+
+    AudioSource myAudio;
+    public AudioSource sfx;
+    public AudioClip jumpEffect;
+    public AudioClip tpSound;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         defaultGravityScale = rb.gravityScale;
+        myAudio = GetComponent<AudioSource>();
     }
 
     void OnMove(InputValue value)
@@ -57,10 +65,12 @@ public class Player : MonoBehaviour
         if(Mathf.Abs(playerVelocity.x) > 0)
         {
             anim.SetBool("isWalking", true);
+            myAudio.enabled = true;
         }
         else
         {
             anim.SetBool("isWalking", false);
+            myAudio.enabled = false;
         }
         rb.velocity = playerVelocity;
     }
@@ -73,6 +83,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("jump");
             rb.velocity = Vector2.up * jumpSpeed;
             canJump = false;
+            sfx.PlayOneShot(jumpEffect);
         }
 
         if(hasReachedChainTop)
@@ -81,6 +92,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("jump");
             rb.velocity = Vector2.up * jumpSpeed;
             hasReachedChainTop = false;
+            
         }
 
         if(isNearChain)
@@ -134,6 +146,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f,groundLayer);
         isNearFlame = Physics2D.OverlapCircle(transform.position, 1f, flameLayer);
         isNearChain = Physics2D.OverlapCircle(transform.position, 0.2f, chainLayer);
+        isNearPortal = Physics2D.OverlapCircle(transform.position, 0.2f, portalLayer);
 
         if (isNearFlame && isCarryingItem)
         {
@@ -151,8 +164,9 @@ public class Player : MonoBehaviour
             canOpenDoor = true;
         }
 
-        if(canTP && Input.GetKeyDown(KeyCode.E))
+        if(canTP && Input.GetKeyDown(KeyCode.E) && isNearPortal)
         {
+            sfx.PlayOneShot(tpSound);
             transform.position = tpPos.position;
         }
     }
